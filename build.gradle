@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+ext.addExample = { subproject, location, name, exampleMainClass, taskDescription ->
+    sourceSets.create(name) {
+        java.srcDirs = ["${subproject.projectDir}/${location}"]
+    }
+
+    subproject.tasks.create(name: name, type: JavaExec) {
+        group = subproject.exampleGroup
+        description = taskDescription
+        mainClass = exampleMainClass
+        classpath = sourceSets[name].runtimeClasspath
+    }
+}
+
+// subprojects {
+//     afterEvaluate { subproject ->
+//         subproject.examples.each { location, examples ->
+//             examples.each { mainClass, description ->
+//                 def exampleName = examples.size() > 1 ? "${location}-${mainClass}" : location
+//                 addExample(subproject, location, exampleName, mainClass, description)
+//             }
+//         }
+//     }
+// }
+
+subprojects {
+    afterEvaluate { subproject ->
+        // 1. 컨테이너 프로젝트(part-1, part-2)를 스킵합니다.
+        // 2. 또는 'examples' 속성이 정의된 경우에만 실행합니다.
+        
+        // ⭐ 이 조건이 26행에 추가되어야 합니다.
+        if (subproject.hasProperty('examples')) {
+            subproject.examples.each { location, examples ->
+                examples.each { mainClass, description ->
+                    def exampleName = examples.size() > 1 ? "${location}-${mainClass}" : location
+                    addExample(subproject, location, exampleName, mainClass, description)
+                }
+            }
+        }
+    }
+}

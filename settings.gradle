@@ -1,0 +1,31 @@
+// def includeProject(part, folder) {
+//     def projectName = ":${folder}"
+//     include projectName
+//     project(projectName).projectDir = file("part-${part}/${folder}")
+// }
+
+include 'part-1'
+include 'part-2'
+
+def includeProject(part, folder) {
+    // 모듈 이름을 part-1:02-functional-java 형태로 만듭니다.
+    def projectName = ":part-${part}:${folder}"
+    include projectName
+    // 프로젝트 디렉토리를 지정합니다.
+    project(projectName).projectDir = file("part-${part}/${folder}")
+}
+
+includeProject(1, '02-functional-java')
+includeProject(1, '03-functional-jdk')
+
+includeProject(2, '04-immutability')
+includeProject(2, '05-working-with-records')
+includeProject(2, '06-data-processing-with-streams')
+includeProject(2, '07-working-with-streams')
+includeProject(2, '08-parallel-data-processing-with-streams')
+includeProject(2, '09-handling-null-with-optionals')
+includeProject(2, '10-functional-exception-handling')
+includeProject(2, '11-lazy-evaluation')
+includeProject(2, '12-recursion')
+includeProject(2, '13-asynchronous-tasks')
+includeProject(2, '14-design-patterns')

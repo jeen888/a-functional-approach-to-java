@@ -1,0 +1,12 @@
+ext.exampleGroup = 'Part 2 - Chapter 14: Design Patterns'
+
+ext.examples = [
+    'factory-pattern-oo': ['Main': 'Factory Pattern (Object-oriented)'],
+    'factory-pattern-fp': ['Main': 'Factory Pattern (Functional)'],
+    'decorator-pattern-oo': ['Main': 'Decorator Pattern (Object-oriented)'],
+    'decorator-pattern-fp': ['Main': 'Decorator Pattern (Functional)'],
+    'strategy-pattern-oo': ['Main': 'Strategy Pattern (Object-oriented)'],
+    'strategy-pattern-fp': ['Main': 'Strategy Pattern (Functional)'],
+    'builder-pattern-oo': ['Main': 'Builder Pattern (Object-oriented)'],
+    'builder-pattern-fp': ['Main': 'Builder Pattern (Functional)'],
+]
