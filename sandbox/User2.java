@@ -2,11 +2,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public record User(String name, boolean active, LocalDateTime lastLogin) {
+public record User2(String name, boolean active, LocalDateTime lastLogin) { // JAVA 9+
 
-    public User {
+    public User2 { // 컴팩트 생성자 : ()와 모든 인수 생략, '유효성검사/데이터정제'에 적절한 위치.
         Objects.requireNonNull(name, "name cannot be null");
         Objects.requireNonNull(lastLogin, "lastLogin cannot be null");
+
+        name = name.toUpperCase();
     }
 
     public String getYmd() {
